@@ -20,4 +20,15 @@ class LinkedList
   def nonempty?
     !empty?
   end
+
+  def get(index)
+    result = head
+    index.times do
+      if result.nil?
+        raise IndexError
+      end
+      result = result.next_node
+    end
+    result
+  end
 end

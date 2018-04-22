@@ -32,4 +32,19 @@ class LinkedListSpec < Test::Unit::TestCase
     assert_equal(linked_list.head.next_node.next_node.value, array[2])
   end
 
+  def test_get_out_of_range
+    linked_list = LinkedList.new
+    assert_raise( IndexError ) { linked_list.get(1) }
+  end
+
+  def test_get_first
+    linked_list = LinkedList.from_array([1])
+    assert_equal(linked_list.get(0).value, 1)
+  end
+
+  def test_get_last
+    array = [1,2,3]
+    linked_list = LinkedList.from_array(array)
+    assert_equal(linked_list.get(array.length - 1).value, array.last)
+  end
 end
