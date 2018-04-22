@@ -31,4 +31,16 @@ class LinkedList
     end
     result
   end
+
+  def first
+    head
+  end
+
+  def last
+    result = head
+    while !result.nil? && !result.next_node.nil? do
+        result = result.next_node
+    end
+    result
+  end
 end
