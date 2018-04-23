@@ -21,15 +21,15 @@ class LinkedListSpec < Test::Unit::TestCase
   def test_from_array
     array = [1]
     linked_list = LinkedList.from_array(array)
-    assert_equal(linked_list.head.value, array.first)
+    assert_equal(linked_list.first, array.first)
   end
 
   def test_from_array_keeps_same_order
     array = [1,2,3]
     linked_list = LinkedList.from_array(array)
-    assert_equal(linked_list.head.value, array.first)
-    assert_equal(linked_list.head.next_node.value, array[1])
-    assert_equal(linked_list.head.next_node.next_node.value, array[2])
+    assert_equal(linked_list.first, array.first)
+    assert_equal(linked_list.get(1), array[1])
+    assert_equal(linked_list.get(2), array[2])
   end
 
   def test_get_out_of_range
@@ -39,24 +39,24 @@ class LinkedListSpec < Test::Unit::TestCase
 
   def test_get_first
     linked_list = LinkedList.from_array([1])
-    assert_equal(linked_list.get(0).value, 1)
+    assert_equal(linked_list.get(0), 1)
   end
 
   def test_get_last
     array = [1,2,3]
     linked_list = LinkedList.from_array(array)
-    assert_equal(linked_list.get(array.length - 1).value, array.last)
+    assert_equal(linked_list.get(array.length - 1), array.last)
   end
 
   def test_first
     assert_nil(LinkedList.new.first)
     linked_list = LinkedList.from_array([1])
-    assert_equal(linked_list.first.value, 1)
+    assert_equal(linked_list.first, 1)
   end
 
   def test_last
     assert_nil(LinkedList.new.last)
-    assert_equal(LinkedList.from_array([1,2,3]).last.value, 3)
+    assert_equal(LinkedList.from_array([1,2,3]).last, 3)
   end
 
   def test_length

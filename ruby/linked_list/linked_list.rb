@@ -1,6 +1,4 @@
 class LinkedList
-  attr_reader :head
-
   def initialize(first_node = nil)
     @head = first_node
   end
@@ -22,31 +20,31 @@ class LinkedList
   end
 
   def get(index)
-    result = head
+    result = @head
     index.times do
       if result.nil?
         raise IndexError
       end
       result = result.next_node
     end
-    result
+    result&.value
   end
 
   def first
-    head
+    @head&.value
   end
 
   def last
-    result = head
+    result = @head
     while !result.nil? && !result.next_node.nil? do
         result = result.next_node
     end
-    result
+    result&.value
   end
 
   def length
     count = 0
-    pointer = head
+    pointer = @head
     while !pointer.nil? do
         pointer = pointer.next_node
         count += 1
