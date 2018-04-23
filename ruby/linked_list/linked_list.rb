@@ -35,11 +35,7 @@ class LinkedList
   end
 
   def last
-    result = @head
-    while !result.nil? && !result.next_node.nil? do
-        result = result.next_node
-    end
-    result&.value
+    last_node&.value
   end
 
   def length
@@ -51,4 +47,25 @@ class LinkedList
     end
     count
   end
+
+  def append(value)
+    new_node = Node.new(value)
+    last_node = last_node
+    if last_node.nil?
+        @head = new_node
+    else
+        last_node.next_node = new_node
+    end
+    self
+  end
+
+  private
+
+    def last_node
+        result = @head
+        while !result.nil? && !result.next_node.nil? do
+            result = result.next_node
+        end
+        result
+    end
 end

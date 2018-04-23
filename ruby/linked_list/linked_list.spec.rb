@@ -69,4 +69,11 @@ class LinkedListSpec < Test::Unit::TestCase
   def test_append_empty
     linked_list = LinkedList.new.append(1)
   end
+
+  def test_append
+    linked_list = LinkedList.new
+    updated_linked_list = linked_list.append(1)
+    assert(updated_linked_list.nonempty?)
+    assert_equal(updated_linked_list.first, 1)
+  end
 end
