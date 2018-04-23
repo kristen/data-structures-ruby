@@ -76,4 +76,16 @@ class LinkedListSpec < Test::Unit::TestCase
     assert(updated_linked_list.nonempty?)
     assert_equal(updated_linked_list.first, 1)
   end
+
+  def test_to_s_empty
+    assert_equal(LinkedList.new.to_s, "LinkedList()")
+  end
+
+  def test_to_s_one_element
+    assert_equal(LinkedList.from_array([1]).to_s, "LinkedList(1)")
+  end
+
+  def test_to_s_multi_element
+    assert_equal(LinkedList.from_array([1,2,3]).to_s, "LinkedList(1,2,3)")
+  end
 end

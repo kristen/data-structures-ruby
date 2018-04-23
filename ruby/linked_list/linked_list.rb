@@ -20,14 +20,14 @@ class LinkedList
   end
 
   def get(index)
-    result = @head
+    pointer = @head
     index.times do
-      if result.nil?
+      if pointer.nil?
         raise IndexError
       end
-      result = result.next_node
+      pointer = pointer.next_node
     end
-    result&.value
+    pointer&.value
   end
 
   def first
@@ -50,8 +50,7 @@ class LinkedList
 
   def append(value)
     new_node = Node.new(value)
-    last_node = last_node
-    if last_node.nil?
+    if self.empty?
         @head = new_node
     else
         last_node.next_node = new_node
@@ -59,13 +58,27 @@ class LinkedList
     self
   end
 
+
+  def to_s
+    result = "LinkedList("
+    pointer = @head
+    while !pointer.nil? do
+        result += pointer.value.to_s
+        if !pointer.next_node.nil?
+            result += ","
+        end
+        pointer = pointer.next_node
+    end
+    result+")"
+  end
+
   private
 
     def last_node
-        result = @head
-        while !result.nil? && !result.next_node.nil? do
-            result = result.next_node
+        pointer = @head
+        while !pointer.nil? && !pointer.next_node.nil? do
+            pointer = pointer.next_node
         end
-        result
+        pointer
     end
 end
