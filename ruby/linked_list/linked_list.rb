@@ -48,7 +48,7 @@ class LinkedList
     count
   end
 
-  def append(value)
+  def append!(value)
     new_node = Node.new(value)
     if self.empty?
         @head = new_node
@@ -58,6 +58,29 @@ class LinkedList
     self
   end
 
+  def insert!(value, index)
+    if self.empty?
+        if index == 0
+            append!(value)
+        else
+            raise IndexError
+        end
+    else
+        pointer = @head
+        previous = nil
+        index.times do
+            if pointer.nil?
+                raise IndexError
+            else
+                previous = pointer
+                pointer = pointer.next_node
+            end
+        end
+        new_node = Node.new(value, pointer)
+        previous.next_node = new_node
+    end
+    self
+  end
 
   def to_s
     result = "LinkedList("

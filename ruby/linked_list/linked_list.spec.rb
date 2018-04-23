@@ -67,14 +67,35 @@ class LinkedListSpec < Test::Unit::TestCase
   end
 
   def test_append_empty
-    linked_list = LinkedList.new.append(1)
+    linked_list = LinkedList.new.append!(1)
   end
 
   def test_append
     linked_list = LinkedList.new
-    updated_linked_list = linked_list.append(1)
-    assert(updated_linked_list.nonempty?)
-    assert_equal(updated_linked_list.first, 1)
+    linked_list.append!(1)
+    assert(linked_list.nonempty?)
+    assert_equal(linked_list.first, 1)
+  end
+
+  def test_insert_empty
+    assert_raise(IndexError) { LinkedList.new.insert!(1, 1) }
+    assert_raise(IndexError) { LinkedList.new.insert!(1, -1) }
+    assert_equal(LinkedList.new.insert!(1,0).first, 1)
+  end
+
+  def test_insert_end
+    linked_list = LinkedList.from_array([1,2,3])
+    linked_list.insert!(4, linked_list.length)
+    assert_equal(linked_list.last, 4)
+  end
+
+  def test_insert_middle
+    linked_list = LinkedList.from_array([1,2,3])
+    linked_list.insert!(5, 1)
+    assert_equal(linked_list.get(0), 1)
+    assert_equal(linked_list.get(1), 5)
+    assert_equal(linked_list.get(2), 2)
+    assert_equal(linked_list.get(3), 3)
   end
 
   def test_to_s_empty
