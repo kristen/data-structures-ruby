@@ -43,4 +43,14 @@ class LinkedList
     end
     result
   end
+
+  def length
+    count = 0
+    pointer = head
+    while !pointer.nil? do
+        pointer = pointer.next_node
+        count += 1
+    end
+    count
+  end
 end

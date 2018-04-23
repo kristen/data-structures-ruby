@@ -58,4 +58,15 @@ class LinkedListSpec < Test::Unit::TestCase
     assert_nil(LinkedList.new.last)
     assert_equal(LinkedList.from_array([1,2,3]).last.value, 3)
   end
+
+  def test_length
+    assert_equal(LinkedList.new.length, 0)
+    assert_equal(LinkedList.from_array([1]).length, 1)
+    assert_equal(LinkedList.from_array([1,2]).length, 2)
+    assert_equal(LinkedList.from_array([1,2,3]).length, 3)
+  end
+
+  def test_append_empty
+    linked_list = LinkedList.new.append(1)
+  end
 end
