@@ -48,6 +48,8 @@ class LinkedList
     count
   end
 
+  alias_method :size, :length
+
   def append!(value)
     new_node = Node.new(value)
     if self.empty?
@@ -79,6 +81,19 @@ class LinkedList
         new_node = Node.new(value, pointer)
         previous.next_node = new_node
     end
+    self
+  end
+
+  def reverse!
+    p1 = nil
+    p2 = nil
+    while !@head.nil? do
+        p1 = @head.next_node
+        @head.next_node = p2
+        p2 = @head
+        @head = p1
+    end
+    @head = p2
     self
   end
 

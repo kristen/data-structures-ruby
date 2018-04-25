@@ -98,6 +98,25 @@ class LinkedListSpec < Test::Unit::TestCase
     assert_equal(linked_list.get(3), 3)
   end
 
+  def test_reverse_emtpy
+    assert(LinkedList.new.reverse!.empty?)
+  end
+
+  def test_reverse_one_element
+    linked_list = LinkedList.from_array([1])
+    linked_list.reverse!
+    assert_equal(linked_list.size, 1)
+    assert_equal(linked_list.first, 1)
+  end
+
+  def test_reverse_multi
+    linked_list = LinkedList.from_array([1,2,3])
+    linked_list.reverse!
+    assert_equal(linked_list.get(0), 3)
+    assert_equal(linked_list.get(1), 2)
+    assert_equal(linked_list.get(2), 1)
+  end
+
   def test_to_s_empty
     assert_equal(LinkedList.new.to_s, "LinkedList()")
   end
